@@ -33,7 +33,7 @@ enum abstract Action(String) to String from String
 	var CHEAT = "cheat";
 }
 #else
-@:enum
+enum
 abstract Action(String) to String from String
 {
 	var UP = "up";

@@ -13,17 +13,15 @@ import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-import polymod.Polymod;
 
 using StringTools;
 
@@ -44,7 +42,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		Polymod.init({modRoot: "mods", dirs: ['introMod']});
 
 		#if (!web)
 		TitleState.soundExt = '.ogg';
@@ -58,11 +55,11 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
-		NGio.noLogin(APIStuff.API);
+		//NGio.noLogin(APIStuff.API);
 
 		#if ng
-		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		trace('NEWGROUNDS LOL');
+		//var ng://NGio = new //NGio(APIStuff.API, APIStuff.EncKey);
+		//trace('NEWGROUNDS LOL');
 		#end
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -253,11 +250,11 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if !switch
-			NGio.unlockMedal(60960);
+			//NGio.unlockMedal(60960);
 
 			// If it's Friday according to da clock
 			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
+				//NGio.unlockMedal(61034);
 			#end
 
 			titleText.animation.play('press');
@@ -274,15 +271,6 @@ class TitleState extends MusicBeatState
 
 				var version:String = "v" + Application.current.meta.get('version');
 
-				if (version.trim() != NGio.GAME_VER_NUMS && !OutdatedSubState.leftState)
-				{
-					trace('OLD VERSION!');
-					FlxG.switchState(new OutdatedSubState());
-				}
-				else
-				{
-					FlxG.switchState(new MainMenuState());
-				}
 			});
 			// FlxG.sound.play('assets/music/titleShoot' + TitleState.soundExt, 0.7);
 		}
