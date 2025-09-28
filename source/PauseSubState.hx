@@ -17,7 +17,7 @@ class PauseSubstate extends SelectionSubstate
                 FlxG.resetState();
             }],
             ['Change Difficulty', function():Void {
-                openSubstate(new DifficultySubState);
+                openSubstate(new DifficultySubState());
                 close();
             }],
             ['Exit to menu', function():Void {
