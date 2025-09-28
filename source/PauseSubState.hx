@@ -16,10 +16,6 @@ class PauseSubstate extends SelectionSubstate
             ['Restart Song', function():Void {
                 FlxG.resetState();
             }],
-            ['Change Difficulty', function():Void {
-                openSubstate(new DifficultySubState());
-                close();
-            }],
             ['Exit to menu', function():Void {
                 FlxG.switchState(new MainMenuState());
             }]
