@@ -18,7 +18,7 @@ class Main extends Sprite
 
 		#if !mobile
 		addChild(new FPS(10, 3, 0xFFFFFF));
-		var memBar = new MemBar(10, 10, 0xFFFFFF); 
+		var memBar = new MemBar(10, 15, 0xFFFFFF); 
 		addChild(memBar);
 		#end
 	}
