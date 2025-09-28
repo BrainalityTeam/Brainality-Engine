@@ -10,6 +10,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 
+import HealthIcon;
+
 using StringTools;
 
 class FreeplayState extends MusicBeatState
@@ -97,9 +99,13 @@ class FreeplayState extends MusicBeatState
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
+			
+			var icon:HealthIcon = new HealthIcon();
+
+			icon.x = songText.x;
+			icon.y = songText.y;
+
+			add(icon);
 		}
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
