@@ -2,8 +2,9 @@ package;
 
 import SelectionSubstate;
 import flixel.FlxG;
-class EditorSubstate extends SelectionSubstate
+class EditorMenuSubState extends SelectionSubstate
 {
+    public static var value:Bool = true;
     override public function new(x:Float, y:Float)
     {
         super(x, y);
@@ -11,9 +12,11 @@ class EditorSubstate extends SelectionSubstate
         menuItems = [
             ['Back to Main Menu', function():Void {
                 close();
+                EditorMenuSubState.value = false;
             }],
             ['Chart Editor', function():Void {
                 FlxG.switchState(new ChartingState());
+                EditorMenuSubState.value = false;
             }],
         ];
 

@@ -22,6 +22,8 @@ class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
 
+	var inEditor:Bool = false;
+
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
@@ -111,7 +113,23 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		if (!selectedSomethin)
+		if (FlxG.keys.justPressed.SEVEN)
+		{
+			inEditor = true;
+			openSubState(new EditorMenuSubState(50, 50));
+		}
+
+		if (inEditor)
+		{
+			if (!EditorMenuSubState.value)
+			{
+				inEditor = false;
+
+				EditorMenuSubState.value = true;
+			}
+		}
+
+		if (!selectedSomethin && !inEditor)
 		{
 			if (controls.UP_P)
 			{
@@ -128,11 +146,6 @@ class MainMenuState extends MusicBeatState
 			if (controls.BACK)
 			{
 				FlxG.switchState(new TitleState());
-			}
-
-			if (controls.CHEAT)
-			{
-				openSubState(new EditorMenuState());
 			}
 
 			if (controls.ACCEPT)
