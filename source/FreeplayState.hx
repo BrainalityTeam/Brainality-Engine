@@ -84,6 +84,10 @@ class FreeplayState extends MusicBeatState
 			// songs.push('Winter-Horrorland');
 		}
 
+		songs.push('Ugh');
+		songs.push('Guns');
+		songs.push('Stress');
+
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
