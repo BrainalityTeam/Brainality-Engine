@@ -39,6 +39,8 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 
+import backend.ClientPrefs;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -2070,6 +2072,9 @@ class PlayState extends MusicBeatState
 	{
 		// just double pasting this shit cuz fuk u
 		// REDO THIS SYSTEM!
+
+		if (ClientPrefs.getSaveVariable('ghostTap')) return;
+
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;
 		var downP = controls.DOWN_P;

@@ -25,17 +25,23 @@ class HealthIcon extends FlxSprite
 		super.update(elapsed);
 	}
 
-	public function setChar(char = 'bf', isPlayer = false)
-	{
-		this.char = char;
+	public function setChar(char:String = "bf", isPlayer:Bool = false) {
+		var path = 'assets/images/icons/icon-${char}.png';
 
-		loadGraphic('assets/images/icons/icon-${char}.png', true, 150, 150);
+		if (!sys.FileSystem.exists(path)) {
+			char = "face";
+			path = 'assets/images/icons/icon-face.png';
+		}
+
+		this.char = char;
+		loadGraphic(path, true, 150, 150);
 
 		antialiasing = true;
 		animation.add('idle', [0, 1], 0, false, isPlayer);
 		animation.play('idle');
 		scrollFactor.set();
 	}
+
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{

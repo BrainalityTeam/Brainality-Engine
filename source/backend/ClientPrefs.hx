@@ -6,7 +6,7 @@ class ClientPrefs
     
     public static function getPrefs()
     {
-        data.set("ghosttap", true);
+        data.set("ghostTap", true);
     }
 
     inline public static function getSaveVariable(key:String)
