@@ -1,3 +1,4 @@
+package;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.system.System;
