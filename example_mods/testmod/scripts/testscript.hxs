@@ -1,0 +1,2 @@
+function onCreate()
+    trace("The mod has loaded successfully.");

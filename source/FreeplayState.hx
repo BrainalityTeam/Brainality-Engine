@@ -28,6 +28,7 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
+	private var icons:FlxTypedGroup<HealthIcon>;
 	private var curPlaying:Bool = false;
 
 	override function create()
@@ -93,6 +94,9 @@ class FreeplayState extends MusicBeatState
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
+		icons = new FlxTypedGroup<HealthIcon>();
+		add(icons);
+
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i], true, false);
@@ -102,10 +106,12 @@ class FreeplayState extends MusicBeatState
 			
 			var icon:HealthIcon = new HealthIcon();
 
-			icon.x = songText.x;
-			icon.y = songText.y;
+			icon.isMenuItem = true;
 
-			add(icon);
+			icon.x = FlxG.width/2;
+			icon.targetY = i;
+
+			icons.add(icon);
 		}
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
@@ -262,6 +268,23 @@ class FreeplayState extends MusicBeatState
 		var bullShit:Int = 0;
 
 		for (item in grpSongs.members)
+		{
+			item.targetY = bullShit - curSelected;
+			bullShit++;
+
+			item.alpha = 0.6;
+			// item.setGraphicSize(Std.int(item.width * 0.8));
+
+			if (item.targetY == 0)
+			{
+				item.alpha = 1;
+				// item.setGraphicSize(Std.int(item.width));
+			}
+		}
+
+		var bullShit:Int = 0;
+
+		for (item in icons.members)
 		{
 			item.targetY = bullShit - curSelected;
 			bullShit++;
