@@ -14,6 +14,8 @@ import flixel.util.FlxColor;
 ////import io.newgrounds.NG;
 import lime.app.Application;
 
+import states.options.OptionsMenu;
+
 import EditorMenuSubState;
 
 using StringTools;
@@ -146,6 +148,11 @@ class MainMenuState extends MusicBeatState
 			if (controls.BACK)
 			{
 				FlxG.switchState(new TitleState());
+			}
+
+			if (FlxG.keys.justPressed.EIGHT)
+			{
+				FlxG.switchState(new OptionsMenu());
 			}
 
 			if (controls.ACCEPT)
