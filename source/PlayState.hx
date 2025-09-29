@@ -38,7 +38,7 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
-import PauseSubstate;
+import PauseSubstate; // delete this if you have issues with compiling
 import backend.ClientPrefs;
 
 using StringTools;
@@ -1276,7 +1276,7 @@ class PlayState extends MusicBeatState
 			persistentDraw = true;
 			paused = true;
 
-			openSubState(new PauseSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			openSubState(new PauseSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y)); // delete this if you have issues with compiling
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
