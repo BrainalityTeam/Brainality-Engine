@@ -29,7 +29,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate'];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options']; // options okay? ok
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -152,7 +152,7 @@ class MainMenuState extends MusicBeatState
 
 			if (FlxG.keys.justPressed.EIGHT)
 			{
-				FlxG.switchState(new OptionsMenu());
+				//FlxG.switchState(new OptionsMenu());
 			}
 
 			if (controls.ACCEPT)
