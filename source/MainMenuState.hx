@@ -13,7 +13,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 ////import io.newgrounds.NG;
 import lime.app.Application;
-
+import flixel.util.FlxTimer;
 import states.options.OptionsMenu;
 
 import EditorMenuSubState;
@@ -23,13 +23,11 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
-
 	var inEditor:Bool = false;
-
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options']; // options okay? ok
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -71,7 +69,6 @@ class MainMenuState extends MusicBeatState
 		magenta.antialiasing = true;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
-		// magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -99,8 +96,6 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		// NG.core.calls.event.logEvent('swag').send();
-
 		changeItem();
 
 		super.create();
@@ -126,7 +121,6 @@ class MainMenuState extends MusicBeatState
 			if (!EditorMenuSubState.value)
 			{
 				inEditor = false;
-
 				EditorMenuSubState.value = true;
 			}
 		}
@@ -157,56 +151,55 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'donate')
-				{
-					#if linux
-					Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
-					#else
-					FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
-					#end
-				}
-				else
-				{
-					selectedSomethin = true;
-					FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
+				selectedSomethin = true;
+				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 
-					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+				FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
-					menuItems.forEach(function(spr:FlxSprite)
+				menuItems.forEach(function(spr:FlxSprite)
+				{
+					if (curSelected != spr.ID)
 					{
-						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
-						else
-						{
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+						FlxTween.tween(spr, {alpha: 0}, 0.4, {
+							ease: FlxEase.quadOut,
+							onComplete: function(twn:FlxTween)
 							{
-								var daChoice:String = optionShit[curSelected];
+								spr.kill();
+							}
+						});
+					}
+					else
+					{
+						FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+						{
+							var daChoice:String = optionShit[curSelected];
 
-								switch (daChoice)
-								{
-									case 'story mode':
-										FlxG.switchState(new StoryMenuState());
-										trace("Story Menu Selected");
-									case 'freeplay':
-										FlxG.switchState(new FreeplayState());
+							switch (daChoice)
+							{
+								case 'story mode':
+									FlxG.switchState(new StoryMenuState());
+									trace("Story Menu Selected");
 
-										trace("Freeplay Menu Selected");
-
-									case 'options':
-										FlxG.switchState(new OptionsMenu());
-								}
-							});
-						}
-					});
-				}
+								case 'freeplay':
+									FlxG.switchState(new FreeplayState());
+									trace("Freeplay Menu Selected");
+                                case 'donate':
+									#if linux
+									Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
+									#else
+									FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
+									new FlxTimer().start(0.3, function(t:FlxTimer)
+									{
+										FlxG.switchState(new MainMenuState());
+									});
+									#end
+									
+								case 'options':
+									FlxG.switchState(new OptionsMenu());
+							}
+						});
+					}
+				});
 			}
 		}
 
