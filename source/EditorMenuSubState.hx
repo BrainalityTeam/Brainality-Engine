@@ -2,6 +2,8 @@ package;
 
 import SelectionSubstate;
 import flixel.FlxG;
+
+import states.editors.PsychCharacterConverter;
 class EditorMenuSubState extends SelectionSubstate
 {
     public static var value:Bool = true;
@@ -18,6 +20,10 @@ class EditorMenuSubState extends SelectionSubstate
                 FlxG.switchState(new ChartingState());
                 EditorMenuSubState.value = false;
             }],
+            ['Character Convertor', function():Void {
+                FlxG.switchState(new PsychCharacterConverter());
+                EditorMenuSubState.value = false;
+            }]
         ];
 
         createMenu(x, y);

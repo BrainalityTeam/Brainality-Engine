@@ -42,7 +42,7 @@ class Character extends FlxSprite
 
 		antialiasing = true;
 
-		tex = FlxAtlasFrames.fromSparrow('assets/images/characters/${data.image}.png', 'assets/images/characters/${data.image}.xml');
+		tex = FlxAtlasFrames.fromSparrow('assets/images/${data.image}.png', 'assets/images/${data.image}.xml');
 		frames = tex;
 
 		for (anim in data.animations)
@@ -50,7 +50,7 @@ class Character extends FlxSprite
 			if (anim.looped == null)
 				anim.looped = false;
 
-			if (anim.indices == null)
+			if (anim.indices == null || anim.indices.length < 1)
 				animation.addByPrefix(anim.name, anim.animName, data.framerate, anim.looped, data.flipX);
 			else
 				animation.addByIndices(anim.name, anim.animName, anim.indices, "", data.framerate, anim.looped, data.flipX);
@@ -64,6 +64,10 @@ class Character extends FlxSprite
 		};
 
 		this.icon = data.icon;
+
+		if (data.scale == null) data.scale = 1;
+
+		this.scale.set(data.scale, data.scale);
 
 		dance();
 

@@ -34,6 +34,8 @@ import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.ByteArray;
 
+import backend.CharacterData;
+
 using StringTools;
 
 class ChartingState extends MusicBeatState
@@ -225,7 +227,7 @@ class ChartingState extends MusicBeatState
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 
-		var characters:Array<String> = CoolUtil.coolTextFile('assets/data/characterList.txt');
+		var characters:Array<String> = CharacterUtil.getCharacters();
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -793,13 +795,13 @@ class ChartingState extends MusicBeatState
 	{
 		if (check_mustHitSection.checked)
 		{
-			leftIcon.animation.play('bf');
-			rightIcon.animation.play('dad');
+			leftIcon.setChar('bf');
+			rightIcon.setChar('dad');
 		}
 		else
 		{
-			leftIcon.animation.play('dad');
-			rightIcon.animation.play('bf');
+			leftIcon.setChar('dad');
+			rightIcon.setChar('bf');
 		}
 	}
 

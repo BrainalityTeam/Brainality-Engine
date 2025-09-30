@@ -15,23 +15,36 @@ typedef CharacterData = {
     var iconRGB:Array<Int>;
 
     var singTime:Float;
-
     var framerate:Int;
-
     var flipX:Bool;
+    var antialiasing:Bool;
+    @:optional var scale:Float;
 }
 
 class CharacterUtil
 {
+    public inline static function dummy():CharacterData
+    {
+        return {
+            image: "BOYFRIEND",
+            x: 0,
+            y: 0,
+            animations: [],
+            icon: "bf",
+            iconRGB: [0, 0, 0],
+            singTime: 6,
+            framerate: 24,
+            flipX: false,
+            antialiasing: true,
+            scale: 1
+        };
+    }
+
     public static function getCharacters():Array<String> {
         var folderPath = "assets/characters/";
         var characters:Array<String> = [];
 
         if (!sys.FileSystem.exists(folderPath)) {
-            // Optionally create the folder:
-            // sys.FileSystem.createDirectory(folderPath);
-
-            // Or just return empty array to avoid crashing
             return characters;
         }
 

@@ -7,3 +7,10 @@ typedef AnimationData = {
     @:optional var indices:Array<Int>;
     @:optional var looped:Bool;
 }
+
+class AnimationUtil {
+    public static function dummy():AnimationData return {
+        name: "idle",
+        animName: "idle"
+    };
+}
