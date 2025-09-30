@@ -41,6 +41,10 @@ import openfl.filters.ShaderFilter;
 import PauseSubstate;
 import backend.ClientPrefs;
 
+import PauseSubstate;
+
+import objects.Character;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -680,11 +684,11 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
-		iconP1 = new HealthIcon(SONG.player1, true);
+		iconP1 = new HealthIcon(boyfriend.icon, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
 
-		iconP2 = new HealthIcon(SONG.player2, false);
+		iconP2 = new HealthIcon(dad.icon, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
@@ -1243,7 +1247,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.NINE)
 		{
 			if (iconP1.char == 'bf-old')
-				iconP1.setChar(SONG.player1, true);
+				iconP1.setChar(boyfriend.icon, true);
 			else
 				iconP1.setChar('bf-old', false);
 

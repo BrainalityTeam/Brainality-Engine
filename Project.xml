@@ -7,6 +7,7 @@
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
 
+
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<!-- <app preloader="Preloader" resizable="true" /> -->
@@ -32,6 +33,8 @@
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
+	<define name="CRASH_HANDLER"/>
+
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
@@ -42,6 +45,7 @@
 
 	<assets path="assets/images" />
 	<assets path="assets/data" />
+	<assets path="assets/characters" rename="assets/characters" />
 	<assets path='example_mods' rename='mods' embed='false'/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<!-- <template path='mods' /> -->
@@ -123,7 +127,7 @@
 	<icon path="art/icon64.png" size='64'/>
 
 
-	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
-	<haxedef name="NG_LOGIN" if="newgrounds" />
+	<haxeflag name="-D" value="no_deprecation_warnings" />
+
 	
 </project>

@@ -6,11 +6,25 @@ import openfl.display.Sprite;
 import MemBar;
 import backend.ClientPrefs;
 
+#if CRASH_HANDLER
+import openfl.Lib;
+import lime.app.Application;
+import sys.io.File;
+import sys.FileSystem;
+import openfl.events.UncaughtErrorEvent;
+import haxe.CallStack;
+import haxe.io.Path;
+#end
+
 class Main extends Sprite
 {
 	public function new()
 	{
 		super();
+
+		#if CRASH_HANDLER
+		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		#end
 
 		ClientPrefs.getPrefs();
 
@@ -33,10 +47,10 @@ class Main extends Sprite
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
 		var dateNow:String = Date.now().toString();
 
-		dateNow = dateNow.replace(" ", "_");
-		dateNow = dateNow.replace(":", "'");
+		//dateNow = dateNow.replace(" ", "_");
+		//dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "VSBrainy_" + dateNow + ".txt";
+		path = "./crash/" + "BrainalityEngine" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
