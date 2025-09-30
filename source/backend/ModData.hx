@@ -1,7 +1,10 @@
 package backend;
 
-typedef ModFile = {
+typedef ModData = {
     name:String;
     description:String;
-    window:String;
+    @:optional var windowName:String;
+    @:optional var discordRPC:String;
+    global:Bool;
+    loaderVersion:String;
 }
