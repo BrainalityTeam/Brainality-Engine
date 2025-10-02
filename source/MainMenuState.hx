@@ -151,7 +151,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				selectedSomethin = true;
+				selectedSomethin = false;
 				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 
 				FlxFlicker.flicker(magenta, 1.1, 0.15, false);
@@ -190,7 +190,7 @@ class MainMenuState extends MusicBeatState
 									FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
 									new FlxTimer().start(0.3, function(t:FlxTimer)
 									{
-										FlxG.switchState(new MainMenuState());
+										//FlxG.switchState(new MainMenuState());
 									});
 									#end
 									
