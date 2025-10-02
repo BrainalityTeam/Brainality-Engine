@@ -1,0 +1,4 @@
+--cpp bin/converter/cpp
+-m ConverterMain
+--class-path source/
+--dce full
