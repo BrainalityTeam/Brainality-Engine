@@ -6,6 +6,23 @@ using StringTools;
 
 class CoolUtil
 {
+	public inline static function getSave():String
+	{
+		return "Brainy7890";
+	}
+
+	public static function stringToBool(string:String):Bool
+	{
+		switch (string.toLowerCase().trim())
+		{
+			case 'true', 'yes':
+				return true;
+
+			default:
+				return false;
+		}
+	}
+
 	public static function coolTextFile(path:String):Array<String>
 	{
 		var daList:Array<String> = Assets.getText(path).trim().split('\n');

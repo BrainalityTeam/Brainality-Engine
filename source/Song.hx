@@ -5,6 +5,8 @@ import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
 
+import objects.Event;
+
 using StringTools;
 
 typedef SwagSong =
@@ -18,6 +20,7 @@ typedef SwagSong =
 	var player1:String;
 	var player2:String;
 	var validScore:Bool;
+	@:optional var events:Array<Event>;
 }
 
 class Song

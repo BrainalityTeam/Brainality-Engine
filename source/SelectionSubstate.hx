@@ -1,6 +1,6 @@
 package;
 
-import Controls.Control;
+import Controls;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -65,8 +65,8 @@ class SelectionSubstate extends MusicBeatSubstate
 
 		super.update(elapsed);
 
-		var upP = controls.UP_P;
-		var downP = controls.DOWN_P;
+		var upP = controls.UI_UP_P;
+		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
 
 		if (upP)

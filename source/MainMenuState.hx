@@ -127,13 +127,13 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin && !inEditor)
 		{
-			if (controls.UP_P)
+			if (controls.UI_UP_P)
 			{
 				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 				changeItem(-1);
 			}
 
-			if (controls.DOWN_P)
+			if (controls.UI_DOWN_P)
 			{
 				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
 				changeItem(1);
@@ -151,7 +151,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				selectedSomethin = true;
+				selectedSomethin = false;
 				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 
 				FlxFlicker.flicker(magenta, 1.1, 0.15, false);

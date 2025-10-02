@@ -47,8 +47,6 @@ class TitleState extends MusicBeatState
 		TitleState.soundExt = '.ogg';
 		#end
 
-		PlayerSettings.init();
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
@@ -56,11 +54,6 @@ class TitleState extends MusicBeatState
 		super.create();
 
 		//NGio.noLogin(APIStuff.API);
-
-		#if ng
-		//var ng://NGio = new //NGio(APIStuff.API, APIStuff.EncKey);
-		//trace('NEWGROUNDS LOL');
-		#end
 
 		FlxG.save.bind('funkin', 'Brainy7890');
 
