@@ -34,8 +34,9 @@ class Main extends Sprite
 		addChild(new FlxGame(0, 0, TitleState, 60, 60, true));
 		#end
 
-		#if !mobile
 		addChild(new FPS(10, 3, 0xFFFFFF));
+
+		#if (!mobile || !html5)
 		var memBar = new MemBar(10, 15, 0xFFFFFF); 
 		addChild(memBar);
 		#end
