@@ -6,6 +6,12 @@ import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+import flixel.util.FlxColor;
+
+#if HSCRIPT_ALLOWED
+import scripting.HScript;
+#end
+
 using StringTools;
 
 class Character extends FlxSprite
@@ -19,6 +25,22 @@ class Character extends FlxSprite
 	public var holdTimer:Float = 0;
 
 	public var icon:String = 'bf';
+
+	public var iconColor:Int;
+
+	#if HSCRIPT_ALLOWED
+	function create()
+	{
+		HScript.call('assets/characters/${curCharacter}.hxs', 'onCreate');
+		HScript.call('assets/characters/${curCharacter}.hxs', 'onCreatePost');
+	}
+
+	override function update(elapsed:Float) {
+		HScript.call('assets/characters/${curCharacter}.hxs', 'onUpdate', [elapsed]);
+		super.update(elapsed);
+		HScript.call('assets/characters/${curCharacter}.hxs', 'onUpdatePost', [elapsed]);
+	}
+	#end
 
     public function new(x:Float, y:Float, ?character:String = "bf", isPlayer:Bool = false)
 	{
@@ -40,7 +62,11 @@ class Character extends FlxSprite
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		antialiasing = true;
+		var rgb = data.iconRGB;
+
+		iconColor = FlxColor.fromRGB(rgb[0], rgb[1], rgb[2]);
+
+		antialiasing = data.antialiasing;
 
 		tex = FlxAtlasFrames.fromSparrow('assets/images/${data.image}.png', 'assets/images/${data.image}.xml');
 		frames = tex;
@@ -92,6 +118,8 @@ class Character extends FlxSprite
 				}
 			}
 		}
+
+		create();
     }
 
 	private var danced:Bool = false;

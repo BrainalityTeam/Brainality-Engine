@@ -1,6 +1,6 @@
 package states.editors;
 
-#if !js
+#if sys
 import backend.CharacterData;
 import backend.Converter;
 import backend.FileDialogHandler;

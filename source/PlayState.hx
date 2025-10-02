@@ -56,6 +56,8 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 
+	public static var instance:PlayState;
+
 	var halloweenLevel:Bool = false;
 
 	private var vocals:FlxSound;
@@ -127,6 +129,12 @@ class PlayState extends MusicBeatState
 	public static var daPixelZoom:Float = 6;
 
 	var inCutscene:Bool = false;
+
+	override public function new()
+	{
+		PlayState.instance = this;
+		super();
+	}
 
 	override public function create()
 	{
@@ -675,7 +683,7 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		healthBar.createFilledBar(dad.iconColor, boyfriend.iconColor);
 		// healthBar
 		add(healthBar);
 
@@ -2078,7 +2086,7 @@ class PlayState extends MusicBeatState
 		// just double pasting this shit cuz fuk u
 		// REDO THIS SYSTEM!
 
-		if (ClientPrefs.getSaveVariable('ghostTap')) return;
+		if (ClientPrefs.getSaveVariable('ghostTap')) return; //that works lol
 
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;

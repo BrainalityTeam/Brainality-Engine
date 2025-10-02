@@ -1,3 +1,6 @@
+package;
+
+#if html5
 import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.FlxG;
@@ -41,3 +44,4 @@ class ClickState extends FlxState
         super.destroy();
     }
 }
+#end

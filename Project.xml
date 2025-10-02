@@ -33,7 +33,8 @@
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
-	<define name="CRASH_HANDLER"/>
+	<define name="CRASH_HANDLER" unless="html5"/>
+	<define name="HSCRIPT_ALLOWED" unlesss="html5"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -43,11 +44,12 @@
 
 	<classpath name="source" />
 
-	<assets path="assets/images" />
-	<assets path="assets/data" />
-	<assets path="assets/characters" rename="assets/characters" />
+	<assets path="assets" />
 	<assets path='example_mods' rename='mods' embed='false'/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+
+	<assets path='platformspecific/html5/assets' rename="assets" if="html5"/>
+
 	<!-- <template path='mods' /> -->
 	
 	<!-- <library name="noPreload" preload='false'/> -->
