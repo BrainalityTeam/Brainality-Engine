@@ -28,10 +28,14 @@ class HealthIcon extends FlxSprite
 	public function setChar(char:String = "bf", isPlayer:Bool = false) {
 		var path = 'assets/images/icons/icon-${char}.png';
 
+		#if sys
 		if (!sys.FileSystem.exists(path)) {
 			char = "face";
 			path = 'assets/images/icons/icon-face.png';
 		}
+		#end
+		//we just won't have safety
+		//it may crash but will work for now	
 
 		this.char = char;
 		loadGraphic(path, true, 150, 150);

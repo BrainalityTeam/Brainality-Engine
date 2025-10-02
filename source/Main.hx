@@ -28,7 +28,11 @@ class Main extends Sprite
 
 		ClientPrefs.getPrefs();
 
+		#if html5
 		addChild(new FlxGame(0, 0, ClickState, 60, 60, true));
+		#else
+		addChild(new FlxGame(0, 0, TitleState, 60, 60, true));
+		#end
 
 		#if !mobile
 		addChild(new FPS(10, 3, 0xFFFFFF));

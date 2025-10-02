@@ -2,9 +2,19 @@ package backend;
 
 import backend.animation.AnimationData;
 
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#end
+
 import haxe.Json;
+
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#elseif html5
+import openfl.utils.Assets;
+#end
 
 typedef CharacterData = {
     var image:String;
@@ -41,29 +51,52 @@ class CharacterUtil
     }
 
     public static function getCharacters():Array<String> {
+        #if sys
         var folderPath = "assets/characters/";
         var characters:Array<String> = [];
 
-        if (!sys.FileSystem.exists(folderPath)) {
-            return characters;
-        }
+        if (!FileSystem.exists(folderPath)) return characters;
 
-        for (fileName in sys.FileSystem.readDirectory(folderPath)) {
+        for (fileName in FileSystem.readDirectory(folderPath)) {
             if (StringTools.endsWith(fileName, ".json")) {
-                var name = fileName.substr(0, fileName.length - 5);
-                characters.push(name);
+                characters.push(fileName.substr(0, fileName.length - 5));
             }
         }
-
         return characters;
+
+        #elseif html5
+        var characters:Array<String> = [];
+        try {
+            var manifestStr = Assets.getText("assets/manifest.json");
+            var manifest:Dynamic = Json.parse(manifestStr);
+
+            if (manifest.characters != null) {
+                var charList:Array<Dynamic> = manifest.characters; // assign to typed array
+                for (c in charList) {
+                    characters.push(c);
+                }
+            }
+        } catch(e:Dynamic) {
+            trace("Failed to load manifest.json: " + e);
+        }
+        return characters;
+        #else
+        return ['bf', 'gf', 'dad'];
+        #end
     }
 
-
     public static function loadCharacter(name:String):CharacterData {
-        var path = 'assets/characters/' + name + '.json';
+        var path = "assets/characters/" + name + ".json";
+
+        #if sys
         var jsonStr = File.getContent(path);
-        var data:CharacterData = Json.parse(jsonStr);
-        return data;
+        #elseif html5
+        var jsonStr = Assets.getText(path);
+        #else
+        throw "loadCharacter not implemented for this platform";
+        #end
+
+        return Json.parse(jsonStr);
     }
 
     public static function checkCharacter(name:String)
