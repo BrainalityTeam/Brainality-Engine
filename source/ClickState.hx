@@ -14,9 +14,9 @@ class ClickState extends FlxState
     {
         super.create();
 
-        FlxG.mouse.visible = false;
+        FlxG.mouse.visible = true;
 
-        touchHereToPlay = new FlxSprite(0, 0, "assets/images/touchHereToPlay.png");
+        touchHereToPlay = new FlxSprite(0, 0, "assets/images/thanksmley.png");
         touchHereToPlay.scale.set(0.5, 0.5);
         touchHereToPlay.updateHitbox();
         touchHereToPlay.screenCenter();
