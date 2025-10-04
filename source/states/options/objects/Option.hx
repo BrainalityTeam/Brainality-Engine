@@ -9,6 +9,7 @@ enum OptionType {
     INT;
     FLOAT;
     PERCENT;
+    KEY;
 }
 
 typedef OptionData = {
