@@ -26,6 +26,7 @@ class Main extends Sprite
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
 
+		//load ClientPrefs BEFORE the game is created, just in case.
 		ClientPrefs.getPrefs();
 
 		#if html5

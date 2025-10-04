@@ -34,6 +34,7 @@
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
 	<define name="CRASH_HANDLER" unless="html5"/>
+	<define name="MODS_ALLOWED" unless="html5"/>
 	<define name="HSCRIPT_ALLOWED" unlesss="html5"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
@@ -45,8 +46,9 @@
 	<classpath name="source" />
 
 	<assets path="assets" />
-	<assets path='example_mods' rename='mods' embed='false'/>
+	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+	<assets path='art/brainalityReadme.txt' rename='readme.txt' />
 
 	<assets path='platformspecific/html5/assets' rename="assets" if="html5"/>
 
@@ -74,7 +76,6 @@
 
 	<!--In case you want to use the addons package-->
 	<haxelib name="flixel-addons" />
-	<haxelib name="hscript" />
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
@@ -124,10 +125,10 @@
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 	
-	<icon path="art/icon16.png" size='16'/>
-	<icon path="art/icon32.png" size='32'/>
-	<icon path="art/icon64.png" size='64'/>
-
+	<icon path="art/icons/icon16.png" size='16'/>
+	<icon path="art/icons/icon32.png" size='32'/>
+	<icon path="art/icons/icon64.png" size='64'/>
+	<icon path="art/icons/iconOG.png"/>
 
 	<haxeflag name="-D" value="no_deprecation_warnings" />
 

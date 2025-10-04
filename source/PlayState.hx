@@ -119,6 +119,9 @@ class PlayState extends MusicBeatState
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
+	var misses:Int = 0;
+	var hit:Int = 0;
+	var accuracy:Int = 0;
 	var scoreTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
@@ -687,8 +690,8 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, RIGHT);
+		scoreTxt = new FlxText(healthBarBG.x, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt.setFormat("assets/fonts/vcr.ttf", 16, FlxColor.WHITE, CENTER);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1246,6 +1249,17 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	private function perc(float:Float):String {
+		var percent = Math.round(float * 10000) / 100;
+		return percent + "%";
+	}
+
+
+	public function updateScoreText()
+	{
+		scoreTxt.text = 'Score: + ${songScore} | Misses: ${misses} | Accuracy ${perc(accuracy)}';
+	}
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1280,7 +1294,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore;
+		updateScoreText();
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2033,6 +2047,7 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.stunned)
 		{
 			health -= 0.04;
+			misses += 1;
 			if (combo > 5)
 			{
 				gf.playAnim('sad');

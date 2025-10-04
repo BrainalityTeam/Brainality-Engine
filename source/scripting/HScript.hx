@@ -6,11 +6,11 @@ import crowplexus.iris.IrisConfig;
 
 class HScript
 {
-    public static final getText:String->String = #if sys sys.io.File.getContent #elseif openfl openfl.utils.Assets.getText #end;
+    public final getText:String->String = #if sys sys.io.File.getContent #elseif openfl openfl.utils.Assets.getText #end;
 
-    static var cache:Map<String, Iris> = new Map();
+    var cache:Map<String, Iris> = new Map();
 
-    static function getOrLoad(script:String):Iris {
+    function getOrLoad(script:String):Iris {
         if (!cache.exists(script)) {
             #if sys
             if (!sys.FileSystem.exists(script)) return null;
@@ -20,7 +20,7 @@ class HScript
         return cache.get(script);
     }
 
-    public static function execute(script:String) {
+    public  function execute(script:String) {
         try {
             var s = getOrLoad(script);
             if (s == null) return null;
@@ -33,7 +33,7 @@ class HScript
         }
     }
 
-    public static function call(script:String, func:String, ?args:Array<Dynamic> = null) {
+    public function call(script:String, func:String, ?args:Array<Dynamic> = null) {
         try
         {
             var s = getOrLoad(script);
