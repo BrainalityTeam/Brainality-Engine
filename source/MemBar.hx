@@ -28,7 +28,7 @@ class MemBar extends TextField
 	}
 
 	public dynamic function updateText():Void {
-		text = 'Memory: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}';
+		text = 'RAM: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}';
 		textColor = 0xFFFFFFFF;
 	}
 
