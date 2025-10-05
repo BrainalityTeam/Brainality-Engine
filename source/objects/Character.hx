@@ -104,8 +104,6 @@ class Character extends FlxSprite
 				}
 			}
 		}
-
-		create();
     }
 
 	private var danced:Bool = false;
