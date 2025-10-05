@@ -28,23 +28,6 @@ class Character extends FlxSprite
 
 	public var iconColor:Int;
 
-	#if HSCRIPT_ALLOWED
-
-	var hscript:HScript;
-
-	function create()
-	{
-		hscript.call('onCreate');
-		hscript.call('onCreatePost');
-	}
-
-	override function update(elapsed:Float) {
-		hscript.call('onUpdate', [elapsed]);
-		super.update(elapsed);
-		hscript.call('onUpdatePost', [elapsed]);
-	}
-	#end
-
     public function new(x:Float, y:Float, ?character:String = "bf", isPlayer:Bool = false)
 	{
 		var characterExists = CharacterUtil.checkCharacter(character);
@@ -53,8 +36,6 @@ class Character extends FlxSprite
 		{
 			character = 'bf';
 		}
-
-		hscript = new HScript('assets/characters/${curCharacter}.hxs');
 
 		var data = CharacterUtil.loadCharacter(character);
 
