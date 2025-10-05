@@ -10,6 +10,14 @@ class HScript
 
     var cache:Map<String, Iris> = new Map();
 
+    var script:String;
+
+    public function new(script:String)
+    {
+        execute(script);
+        this.script = script;
+    }
+
     function getOrLoad(script:String):Iris {
         if (!cache.exists(script)) {
             #if sys
@@ -20,7 +28,7 @@ class HScript
         return cache.get(script);
     }
 
-    public  function execute(script:String) {
+    public function execute(script) {
         try {
             var s = getOrLoad(script);
             if (s == null) return null;
@@ -33,12 +41,10 @@ class HScript
         }
     }
 
-    public function call(script:String, func:String, ?args:Array<Dynamic> = null) {
+    public function call(func:String, ?args:Array<Dynamic> = null) {
         try
         {
-            var s = getOrLoad(script);
-            if (s == null) return null;
-            return s.call(func, args);
+            return cache.get(script).call(func, args);
         }
         catch (e:Dynamic)
         {

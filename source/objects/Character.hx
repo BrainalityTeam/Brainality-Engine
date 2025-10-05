@@ -29,16 +29,19 @@ class Character extends FlxSprite
 	public var iconColor:Int;
 
 	#if HSCRIPT_ALLOWED
+
+	var hscript:HScript;
+
 	function create()
 	{
-		HScript.call('assets/characters/${curCharacter}.hxs', 'onCreate');
-		HScript.call('assets/characters/${curCharacter}.hxs', 'onCreatePost');
+		hscript.call('onCreate');
+		hscript.call('onCreatePost');
 	}
 
 	override function update(elapsed:Float) {
-		HScript.call('assets/characters/${curCharacter}.hxs', 'onUpdate', [elapsed]);
+		hscript.call('onUpdate', [elapsed]);
 		super.update(elapsed);
-		HScript.call('assets/characters/${curCharacter}.hxs', 'onUpdatePost', [elapsed]);
+		hscript.call('onUpdatePost', [elapsed]);
 	}
 	#end
 
@@ -50,6 +53,8 @@ class Character extends FlxSprite
 		{
 			character = 'bf';
 		}
+
+		hscript = new HScript('assets/characters/${curCharacter}.hxs');
 
 		var data = CharacterUtil.loadCharacter(character);
 
