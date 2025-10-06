@@ -4,6 +4,6 @@ haxelib set flixel 6.1.0
 haxelib install flixel-ui --skip-dependencies
 haxelib install flixel-addons --skip-dependencies
 haxelib install hscript-iris
-haxelib git polymod https://github.com/Brainfunk-Team/polymod-brainality.git
+haxelib git polymod https://github.com/BrainalityTeam/polymod-brainality.git
 haxelib set polymod git
 echo Finished!

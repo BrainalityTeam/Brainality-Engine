@@ -16,10 +16,30 @@ import haxe.CallStack;
 import haxe.io.Path;
 #end
 
+#if MODS_ALLOWED
+import polymod.hscript.*;
+import polymod.Polymod;
+import backend.Mods;
+import haxe.Json;
+#end
+
 class Main extends Sprite
 {
 	public function new()
 	{
+		#if MODS_ALLOWED
+
+		var curMods = Mods.getMods();
+		trace(curMods);
+		var results = Polymod.init({
+			modRoot: Mods.modsFolder,
+			dirs: curMods
+		});
+
+		var modIds:Array<String> = results.map(function(m) return m.id);
+		trace("Mods loaded: " + modIds);
+
+		#end
 		super();
 
 		#if CRASH_HANDLER

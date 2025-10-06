@@ -12,10 +12,7 @@ import haxe.Json;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
-#elseif html5
-import openfl.utils.Assets;
 #end
-
 typedef CharacterData = {
     var image:String;
     var x:Float;
@@ -87,14 +84,7 @@ class CharacterUtil
 
     public static function loadCharacter(name:String):CharacterData {
         var path = "assets/characters/" + name + ".json";
-
-        #if sys
-        var jsonStr = File.getContent(path);
-        #elseif html5
         var jsonStr = Assets.getText(path);
-        #else
-        throw "loadCharacter not implemented for this platform";
-        #end
 
         return Json.parse(jsonStr);
     }

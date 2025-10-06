@@ -33,9 +33,12 @@
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
+	<!-- Brainality Customization-->
+
 	<define name="CRASH_HANDLER" unless="html5"/>
 	<define name="MODS_ALLOWED" unless="html5"/>
 	<define name="HSCRIPT_ALLOWED" unlesss="html5"/>
+	<define name="USE_META_FILE"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -46,7 +49,7 @@
 	<classpath name="source" />
 
 	<assets path="assets" />
-	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
+	<assets path='example_mods' rename='mods' embed='false'/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<assets path='art/brainalityReadme.txt' rename='readme.txt' />
 
@@ -81,7 +84,18 @@
 	<haxelib name="flixel-ui" />
 	<haxelib name="faxe" if='switch'/>
 
+	<haxelib name="hscript"/>
 	<haxelib name="hscript-iris" />
+	<haxedef name="hscriptPos" value="true" if="MOD_ALLOWED"/>
+	<haxelib name="polymod" if="MODS_ALLOWED"/>
+
+	<!-- POLYMOD CONFIG -->
+	<section if="MODS_ALLOWED">
+		<define name="POLYMOD_MOD_METADATA_FILE" value="pack.json"/>
+		<define name="POLYMOD_MOD_ICON_FILE" value="pack.png"/>
+		<define name="POLYMOD_DEBUG" value="true"/>
+		<define name="POLYMOD_DEBUG"/>
+	</section>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
