@@ -151,7 +151,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				selectedSomethin = false;
+				selectedSomethin = true;
 				FlxG.sound.play('assets/sounds/confirmMenu' + TitleState.soundExt);
 
 				FlxFlicker.flicker(magenta, 1.1, 0.15, false);
