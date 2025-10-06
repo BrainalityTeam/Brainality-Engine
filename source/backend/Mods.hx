@@ -4,33 +4,10 @@ package backend;
 import sys.FileSystem;
 import sys.io.File;
 #end
-typedef ModData = {
-    ?windowName:String,
-    ?discordRPC:String,
-    ?global:Bool,
-}
-
-class Mod
-{
-    public var data:ModData;
-    public var folderName:String;
-
-    public function new(data:ModData, folderName:String)
-    {
-        this.data = data;
-        this.folderName = folderName;
-    }
-}
 
 class Mods
 {
     public static var modsFolder = "./mods/";
-
-    public static function dummy():ModData
-        return {
-            windowName: "YOUR MOD NAME",
-            global: false,
-        };
 
     public static function getMods():Array<String>
     {

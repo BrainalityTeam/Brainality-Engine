@@ -1,5 +1,6 @@
 package;
 
+import backend.Meta.MetaData;
 import flixel.FlxGame;
 import openfl.display.FPS;
 import openfl.display.Sprite;
@@ -21,6 +22,7 @@ import polymod.hscript.*;
 import polymod.Polymod;
 import backend.Mods;
 import haxe.Json;
+import backend.Meta;
 #end
 
 class Main extends Sprite
@@ -38,6 +40,13 @@ class Main extends Sprite
 
 		var modIds:Array<String> = results.map(function(m) return m.id);
 		trace("Mods loaded: " + modIds);
+
+		var meta:MetaData = Meta.loadMeta();
+
+		if (meta.windowName != null)
+		{
+			FlxG.stage.window.title = meta.windowName;
+		}
 
 		#end
 		super();
