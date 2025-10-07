@@ -25,8 +25,9 @@ import haxe.Json;
 import backend.Meta;
 #end
 
+#if DISCORD_ALLOWED
 import backend.DiscordRPC;
-
+#end
 class Main extends Sprite
 {
 	public function new()
@@ -50,6 +51,7 @@ class Main extends Sprite
 			FlxG.stage.window.title = meta.windowName;
 		}
 
+		#if DISCORD_ALLOWED
 		if (meta.discordRPC != null)
 		{
 			DiscordRPC.init(meta.discordRPC);
@@ -57,8 +59,12 @@ class Main extends Sprite
 		else
 			DiscordRPC.init();
 
+		#end
+
 		#else
-			DiscordRPC.init();
+		#if DISCORD_ALLOWED
+		DiscordRPC.init();
+		#end
 		#end
 
 		super();
