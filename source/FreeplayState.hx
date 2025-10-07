@@ -100,7 +100,7 @@ class FreeplayState extends MusicBeatState
 		add(grpSongs);
 
 		icons = new FlxTypedGroup<HealthIcon>();
-		add(icons);
+		//add(icons);
 
 		for (i in 0...songs.length)
 		{
