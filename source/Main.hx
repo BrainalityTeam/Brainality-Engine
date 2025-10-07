@@ -25,6 +25,8 @@ import haxe.Json;
 import backend.Meta;
 #end
 
+import backend.DiscordRPC;
+
 class Main extends Sprite
 {
 	public function new()
@@ -48,7 +50,17 @@ class Main extends Sprite
 			FlxG.stage.window.title = meta.windowName;
 		}
 
+		if (meta.discordRPC != null)
+		{
+			DiscordRPC.init(meta.discordRPC);
+		}
+		else
+			DiscordRPC.init();
+
+		#else
+			DiscordRPC.init();
 		#end
+
 		super();
 
 		#if CRASH_HANDLER
