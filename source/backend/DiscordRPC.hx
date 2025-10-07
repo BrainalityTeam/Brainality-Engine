@@ -47,4 +47,10 @@ class DiscordRPC
 			}
 		});
 	}
+
+    public static function shutdown()
+    {
+        trace('Shutting down Discord RPC...');
+		Discord.Shutdown();
+    }
 }

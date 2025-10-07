@@ -134,7 +134,7 @@ class Main extends Sprite
 
 		Application.current.window.alert(errMsg, "Error!");
 		#if DISCORD_ALLOWED
-		DiscordClient.shutdown();
+		DiscordRPC.shutdown();
 		#end
 		Sys.exit(1);
 	}
