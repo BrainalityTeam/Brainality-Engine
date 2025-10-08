@@ -13,7 +13,7 @@ class DiscordRPC
     {
         trace("Connected!");
         final discordPresence:DiscordRichPresence = new DiscordRichPresence();
-		discordPresence.type = DiscordActivityType_Watching;
+		discordPresence.type = DiscordActivityType_Playing; // discordPresence.type = DiscordActivityType_Listening;
 		discordPresence.state = "Playing Brainality Engine";
         Discord.UpdatePresence(cpp.RawConstPointer.addressOf(discordPresence));
     }
