@@ -195,7 +195,7 @@ class MainMenuState extends MusicBeatState
 									#end
 									
 								case 'options':
-										stat.load("assets/videos/static-transition.mkv");  
+										stat.load("assets/static-transition.mkv");  
     
 								stat.scale.set(2, 2);
     add(stat);
