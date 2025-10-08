@@ -15,7 +15,7 @@ import flixel.util.FlxColor;
 import lime.app.Application;
 import flixel.util.FlxTimer;
 import states.options.OptionsMenu;
-
+import hxvlc.flixel.FlxVideoSprite;
 import EditorMenuSubState;
 
 using StringTools;
@@ -25,9 +25,9 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 	var inEditor:Bool = false;
 	var menuItems:FlxTypedGroup<FlxSprite>;
-
+    var stat = new FlxVideoSprite(320, 180);
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate'];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -195,7 +195,13 @@ class MainMenuState extends MusicBeatState
 									#end
 									
 								case 'options':
-									FlxG.switchState(new OptionsMenu());
+										stat.load("assets/videos/static-transition.mkv");  
+    
+								stat.scale.set(2, 2);
+    add(stat);
+	stat.play();
+									
+									
 							}
 						});
 					}
