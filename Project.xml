@@ -83,7 +83,7 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="faxe" if='switch'/>
-
+    <haxelib name="hxvlc" />
 	<haxelib name="hscript"/>
 	<haxelib name="hscript-iris" />
 	<haxedef name="hscriptPos" value="true" if="MOD_ALLOWED"/>
