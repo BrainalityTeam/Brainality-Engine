@@ -38,7 +38,7 @@
 	<define name="CRASH_HANDLER" unless="html5"/>
 	<define name="MODS_ALLOWED" unless="html5"/>
 	<define name="HSCRIPT_ALLOWED" unlesss="html5"/>
-	
+	<define name="VIDEOS_ALLOWED" />
 	<!-- <define name="DISCORD_ALLOWED" if="desktop"/>-->
 
 	<!-- _____________________________ Path Settings ____________________________ -->
@@ -86,7 +86,7 @@
 	<haxedef name="hscriptPos" value="true" if="MOD_ALLOWED"/>
 	<haxelib name="BrainalityMod" if="MODS_ALLOWED"/>
 	<haxelib name="hxdiscord_rpc" />
-	<haxelib name="hxvlc" />
+	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
 
